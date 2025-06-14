@@ -1,0 +1,469 @@
+    :root {
+      --primary-blue: #0B2545;
+      --secondary-blue: #112D4E;
+      --accent-blue: #3F72AF;
+      --light-blue: #DBE2EF;
+      --light-bg: #F9F7F7;
+      --gold: #FFD700;
+    }
+    
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--light-bg);
+      color: #333;
+      overflow-x: hidden;
+    }
+    
+    .navbar {
+      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      padding: 15px 0;
+    }
+    
+    .navbar-brand, .nav-link {
+      color: white !important;
+      font-weight: 600;
+    }
+    
+    .nav-link:hover, .nav-link.active {
+      color: var(--gold) !important;
+    }
+    
+    .hero {
+      background: linear-gradient(rgba(11, 37, 69, 0.85), rgba(17, 45, 78, 0.9)), 
+                  url('https://images.unsplash.com/photo-1574823452306-8ecb8d200d0a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      height: 80vh;
+      position: relative;
+      color: white;
+      display: flex;
+      align-items: center;
+      text-align: center;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .hero-subtitle {
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 40px;
+      opacity: 0.9;
+    }
+    
+    .countdown-section {
+      background: linear-gradient(135deg, var(--secondary-blue), var(--primary-blue));
+      color: white;
+      padding: 50px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .countdown-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://www.transparenttextures.com/patterns/45-degree-fabric-light.png');
+      opacity: 0.1;
+    }
+    
+    .countdown-title {
+      font-weight: 700;
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .countdown-title::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--gold);
+      border-radius: 2px;
+    }
+    
+    #countdown {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 20px 0;
+      color: var(--gold);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .countdown-label {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 10px;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin: 80px 0 50px;
+      font-weight: 700;
+      color: var(--primary-blue);
+      position: relative;
+    }
+    
+    .section-title::after {
+      content: "";
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-blue), var(--primary-blue));
+      border-radius: 2px;
+    }
+    
+    .card {
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      height: 100%;
+      background: white;
+    }
+    
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+    
+    .card-img-top {
+      height: 300px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .card:hover .card-img-top {
+      transform: scale(1.05);
+    }
+    
+    .card-body {
+      padding: 25px;
+    }
+    
+    .card-title {
+      font-weight: 700;
+      color: var(--primary-blue);
+      margin-bottom: 15px;
+    }
+    
+    .card-text {
+      color: #555;
+      line-height: 1.8;
+    }
+    
+    .feature-card {
+      text-align: center;
+      padding: 30px 20px;
+      border-radius: 15px;
+      background: white;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      height: 100%;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+      background: linear-gradient(135deg, var(--light-blue), white);
+    }
+    
+    .feature-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--accent-blue), var(--primary-blue));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      color: white;
+      font-size: 1.8rem;
+    }
+    
+    .schedule-section {
+      background: linear-gradient(to bottom, var(--light-bg) 0%, white 100%);
+      padding: 40px 0;
+      border-radius: 30px;
+      margin: 40px 0;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.05);
+    }
+    
+    .schedule-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 15px;
+    }
+    
+    .schedule-table thead th {
+      background: linear-gradient(135deg, var(--accent-blue), var(--primary-blue));
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-weight: 600;
+      border: none;
+    }
+    
+    .schedule-table tbody tr {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .schedule-table tbody tr:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    .schedule-table td {
+      padding: 20px;
+      text-align: center;
+      border: none;
+      vertical-align: middle;
+    }
+    
+    .schedule-table td:first-child {
+      border-top-left-radius: 15px;
+      border-bottom-left-radius: 15px;
+      font-weight: 700;
+      color: var(--primary-blue);
+      background: rgba(63, 114, 175, 0.1);
+    }
+    
+    .schedule-table td:last-child {
+      border-top-right-radius: 15px;
+      border-bottom-right-radius: 15px;
+    }
+    
+    .schedule-table .activity-cell {
+      text-align: left;
+      padding-left: 30px;
+    }
+    
+    .schedule-table .activity-highlight {
+      color: var(--primary-blue);
+      font-weight: 600;
+    }
+    
+    .schedule-table .activity-detail {
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 5px;
+    }
+    
+    .cta-section {
+      background: linear-gradient(135deg, var(--accent-blue), var(--primary-blue));
+      color: white;
+      padding: 80px 0;
+      text-align: center;
+      border-radius: 20px;
+      margin: 60px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .cta-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://www.transparenttextures.com/patterns/diagmonds-light.png');
+      opacity: 0.1;
+    }
+    
+    .cta-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+    
+    .cta-subtitle {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+    
+    .btn-cta {
+      background: var(--gold);
+      color: var(--primary-blue);
+      font-weight: 700;
+      padding: 15px 40px;
+      border-radius: 50px;
+      border: none;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .btn-cta:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4);
+    }
+    
+    .footer {
+      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+      color: white;
+      padding: 60px 0 30px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .footer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://www.transparenttextures.com/patterns/diagmonds-light.png');
+      opacity: 0.1;
+    }
+    
+    .footer-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .footer-title {
+      font-weight: 700;
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .footer-title::after {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--gold);
+    }
+    
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+    }
+    
+    .social-icon:hover {
+      background: var(--gold);
+      color: var(--primary-blue);
+      transform: translateY(-5px);
+    }
+    
+    .copyright {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+    }
+    
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-blue), var(--primary-blue));
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 991px) {
+      .hero-title {
+        font-size: 2.8rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.2rem;
+      }
+      
+      .cta-title {
+        font-size: 2rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero {
+        height: 70vh;
+      }
+      
+      .hero-title {
+        font-size: 2.3rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .cta-title {
+        font-size: 1.8rem;
+      }
+      
+      .schedule-table td {
+        padding: 15px 10px;
+      }
+    }

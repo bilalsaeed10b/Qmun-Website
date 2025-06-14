@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QMUN - Event & Schedule</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary-blue: #0B2545;
+      --secondary-blue: #112D4E;
+      --accent-blue: #3F72AF;
+      --light-blue: #DBE2EF;
+      --light-bg: #F9F7F7;
+      --gold: #FFD700;
+    }
+    
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--light-bg);
+      color: #333;
+      overflow-x: hidden;
+    }
+    
+    .navbar {
+      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      padding: 15px 0;
+    }
+    
+    .navbar-brand, .nav-link {
+      color: white !important;
+      font-weight: 600;
+    }
+    
+    .nav-link:hover, .nav-link.active {
+      color: var(--gold) !important;
+    }
+    
+    .hero {
+      background: linear-gradient(rgba(11, 37, 69, 0), rgba(17, 45, 78, 0.7)), 
+                  url('images/hero.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      height: 80vh;
+      position: relative;
+      color: white;
+      display: flex;
+      align-items: center;
+      text-align: center;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .hero-subtitle {
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 40px;
+      opacity: 0.9;
+    }
+    
+    .countdown-section {
+      background: linear-gradient(135deg, var(--secondary-blue), var(--primary-blue));
+      color: white;
+      padding: 50px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .countdown-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://www.transparenttextures.com/patterns/45-degree-fabric-light.png');
+      opacity: 0.1;
+    }
+    
+    .countdown-title {
+      font-weight: 700;
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .countdown-title::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--gold);
+      border-radius: 2px;
+    }
+    
+    #countdown {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 20px 0;
+      color: var(--gold);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .countdown-label {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 10px;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin: 80px 0 50px;
+      font-weight: 700;
+      color: var(--primary-blue);
+      position: relative;
+    }
+    
+    .section-title::after {
+      content: "";
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-blue), var(--primary-blue));
+      border-radius: 2px;
+    }
+    
+    .card {
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      height: 100%;
+      background: white;
+    }
+    
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+    
+    .card-img-top {
+      height: 300px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .card:hover .card-img-top {
+      transform: scale(1.05);
+    }
+    
+    .card-body {
+      padding: 25px;
+    }
+    
+    .card-title {
+      font-weight: 700;
+      color: var(--primary-blue);
+      margin-bottom: 15px;
+    }
+    
+    .card-text {
+      color: #555;
+      line-height: 1.8;
+    }
+    
+    .feature-card {
+      text-align: center;
+      padding: 30px 20px;
+      border-radius: 15px;
+      background: white;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      height: 100%;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+      background: linear-gradient(135deg, var(--light-blue), white);
+    }
+    
+    .feature-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--accent-blue), var(--primary-blue));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      color: white;
+      font-size: 1.8rem;
+    }
+    
+    .schedule-section {
+      background: linear-gradient(to bottom, var(--light-bg) 0%, white 100%);
+      padding: 40px 0;
+      border-radius: 30px;
+      margin: 40px 0;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.05);
+    }
+    
+    .schedule-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 15px;
+    }
+    
+    .schedule-table thead th {
+      background: linear-gradient(135deg, var(--accent-blue), var(--primary-blue));
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-weight: 600;
+      border: none;
+    }
+    
+    .schedule-table tbody tr {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .schedule-table tbody tr:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    .schedule-table td {
+      padding: 20px;
+      text-align: center;
+      border: none;
+      vertical-align: middle;
+    }
+    
+    .schedule-table td:first-child {
+      border-top-left-radius: 15px;
+      border-bottom-left-radius: 15px;
+      font-weight: 700;
+      color: var(--primary-blue);
+      background: rgba(63, 114, 175, 0.1);
+    }
+    
+    .schedule-table td:last-child {
+      border-top-right-radius: 15px;
+      border-bottom-right-radius: 15px;
+    }
+    
+    .schedule-table .activity-cell {
+      text-align: left;
+      padding-left: 30px;
+    }
+    
+    .schedule-table .activity-highlight {
+      color: var(--primary-blue);
+      font-weight: 600;
+    }
+    
+    .schedule-table .activity-detail {
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 5px;
+    }
+    
+    .cta-section {
+      background: linear-gradient(135deg, var(--accent-blue), var(--primary-blue));
+      color: white;
+      padding: 80px 0;
+      text-align: center;
+      border-radius: 20px;
+      margin: 60px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .cta-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://www.transparenttextures.com/patterns/diagmonds-light.png');
+      opacity: 0.1;
+    }
+    
+    .cta-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+    
+    .cta-subtitle {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+    
+    .btn-cta {
+      background: var(--gold);
+      color: var(--primary-blue);
+      font-weight: 700;
+      padding: 15px 40px;
+      border-radius: 50px;
+      border: none;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .btn-cta:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4);
+    }
+    
+    .footer {
+      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+      color: white;
+      padding: 60px 0 30px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .footer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://www.transparenttextures.com/patterns/diagmonds-light.png');
+      opacity: 0.1;
+    }
+    
+    .footer-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .footer-title {
+      font-weight: 700;
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .footer-title::after {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--gold);
+    }
+    
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+    }
+    
+    .social-icon:hover {
+      background: var(--gold);
+      color: var(--primary-blue);
+      transform: translateY(-5px);
+    }
+    
+    .copyright {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+    }
+    
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-blue), var(--primary-blue));
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 991px) {
+      .hero-title {
+        font-size: 2.8rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.2rem;
+      }
+      
+      .cta-title {
+        font-size: 2rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero {
+        height: 70vh;
+      }
+      
+      .hero-title {
+        font-size: 2.3rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .cta-title {
+        font-size: 1.8rem;
+      }
+      
+      .schedule-table td {
+        padding: 15px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <i class="fas fa-globe-americas me-2"></i>QMUN
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="our-team.html">Our Team</a></li>
+        <li class="nav-item"><a class="nav-link" href="volunteer and delegate.html">Volunteer</a></li>
+        <li class="nav-item"><a class="nav-link" href="volunteer and delegate.html">Delegate</a></li>
+        <li class="nav-item"><a class="nav-link active" href="#schedule">Event & Schedule</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<header class="hero d-flex align-items-center justify-content-center bg-dark">
+  <div class="hero-content">
+    <h1 class="hero-title" data-aos="fade-up">Event & Schedule</h1>
+    <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
+      Join us at QMUN 2025 for an unparalleled diplomatic experience
+    </p>
+    <a href="#schedule" class="btn btn-light btn-lg px-4 py-2 mt-3" 
+       style="border-radius: 30px; font-weight: 600;" 
+       data-aos="fade-up" data-aos-delay="400">
+      <i class="fas fa-calendar-alt me-2"></i>View Full Schedule
+    </a>
+  </div>
+</header>
+
+<!-- Countdown Section -->
+<section class="countdown-section text-center">
+  <div class="container">
+    <h2 class="countdown-title" data-aos="fade-up">Countdown to QMUN 2025</h2>
+    <div id="countdown" class="mb-2" data-aos="fade-up" data-aos-delay="200">00d 00h 00m 00s</div>
+    <div class="countdown-label" data-aos="fade-up" data-aos-delay="300">August 1-3, 2025 • Karachi Expo Center</div>
+  </div>
+</section>
+
+<!-- Vision & Why Section -->
+<section class="container my-5">
+  <div class="row g-4">
+    <div class="col-md-6" data-aos="fade-right">
+      <div class="card">
+        <img src="images/conf2.jpg" 
+             class="card-img-top" alt="Our Vision">
+        <div class="card-body">
+          <h2 class="card-title">Our Vision</h2>
+          <p class="card-text">At QMUN, we empower youth through debate, diplomacy, and collaboration to build tomorrow's leaders. Our mission is to create a platform where students can engage with global issues, develop critical thinking skills, and foster international understanding.</p>
+          <p class="card-text">We believe in the power of dialogue to create change and are committed to providing an inclusive environment where every voice is heard and valued.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6" data-aos="fade-left">
+      <div class="card">
+        <img src="images/MUNs.jpg" 
+             class="card-img-top" alt="Why QMUN">
+        <div class="card-body">
+          <h2 class="card-title">Why QMUN?</h2>
+          <p class="card-text">Experience real-world issues, simulate global diplomacy, and hone leadership skills in an inclusive environment designed for growth and learning.</p>
+          <ul class="mt-3">
+            <li>Engage with current global challenges through realistic simulations</li>
+            <li>Develop public speaking, negotiation, and critical thinking skills</li>
+            <li>Network with like-minded peers from diverse backgrounds</li>
+            <li>Learn from experienced mentors and guest speakers</li>
+            <li>Gain recognition for your diplomatic and leadership abilities</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="container my-5">
+  <h2 class="section-title" data-aos="fade-up">Why Join Us?</h2>
+  <p class="text-center mb-5 px-3" data-aos="fade-up" data-aos-delay="100">
+    Whether you're a seasoned delegate or a first-timer, QMUN offers a dynamic environment to grow as a speaker, thinker, and leader.
+  </p>
+  
+  <div class="row g-4">
+    <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-globe-americas"></i>
+        </div>
+        <h5>Global Awareness</h5>
+        <p>Engage in pressing international issues and understand diverse perspectives on global challenges.</p>
+      </div>
+    </div>
+    <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-comments"></i>
+        </div>
+        <h5>Debate Mastery</h5>
+        <p>Sharpen your critical thinking and public speaking in moderated discussions and negotiations.</p>
+      </div>
+    </div>
+    <div class="col-md-3" data-aos="fade-up" data-aos-delay="400">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-network-wired"></i>
+        </div>
+        <h5>Networking</h5>
+        <p>Meet like-minded individuals, form friendships, and build professional connections that last.</p>
+      </div>
+    </div>
+    <div class="col-md-3" data-aos="fade-up" data-aos-delay="500">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-certificate"></i>
+        </div>
+        <h5>Recognition</h5>
+        <p>Earn awards, certificates, and acknowledgment for your diplomatic performance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Schedule Section -->
+<section id="schedule" class="schedule-section">
+  <div class="container">
+    <h2 class="section-title" data-aos="fade-up">Event Schedule</h2>
+    <p class="text-center mb-5 px-3" data-aos="fade-up" data-aos-delay="100">
+      Three days of intensive diplomacy, debate, and development. All times are in PKT.
+    </p>
+    
+    <div class="table-responsive">
+      <table class="schedule-table">
+        <thead>
+          <tr>
+            <th>Day</th>
+            <th>Time</th>
+            <th>Activity</th>
+            <th>Location</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-aos="fade-right">
+            <td>Day 1</td>
+            <td>09:00 - 10:30</td>
+            <td class="activity-cell">
+              <span class="activity-highlight">Opening Ceremony</span>
+              <div class="activity-detail">Keynote address by Ambassador Shireen Mazari</div>
+            </td>
+            <td>Main Hall</td>
+          </tr>
+          <tr data-aos="fade-right" data-aos-delay="100">
+            <td>Day 1</td>
+            <td>11:00 - 13:00</td>
+            <td class="activity-cell">
+              <span class="activity-highlight">Committee Session 1</span>
+              <div class="activity-detail">Country position presentations</div>
+            </td>
+            <td>Assigned Rooms</td>
+          </tr>
+          <tr data-aos="fade-right" data-aos-delay="200">
+            <td>Day 1</td>
+            <td>14:00 - 16:00</td>
+            <td class="activity-cell">
+              <span class="activity-highlight">Lunch & Networking</span>
+              <div class="activity-detail">Cultural exchange activities</div>
+            </td>
+            <td>Grand Ballroom</td>
+          </tr>
+          <tr data-aos="fade-right" data-aos-delay="300">
+            <td>Day 1</td>
+            <td>16:30 - 18:30</td>
+            <td class="activity-cell">
+              <span class="activity-highlight">Committee Session 2</span>
+              <div class="activity-detail">Draft resolution discussions</div>
+            </td>
+            <td>Assigned Rooms</td>
+          </tr>
+          <tr data-aos="fade-left">
+            <td>Day 2</td>
+            <td>09:00 - 12:00</td>
+            <td class="activity-cell">
+              <span class="activity-highlight">Committee Session 3</span>
+              <div class="activity-detail">Formal debate and amendments</div>
+            </td>
+            <td>Assigned Rooms</td>
+          </tr>
+          <tr data-aos="fade-left" data-aos-delay="100">
+            <td>Day 2</td>
+            <td>13:30 - 15:30</td>
+            <td class="activity-cell">
+              <span class="activity-highlight">Expert Panel</span>
+              <div class="activity-detail">"Global Challenges in 2025" with international diplomats</div>
+            </td>
+            <td>Conference Hall A</td>
+          </tr>
+          <tr data-aos="fade-left" data-aos-delay="200">
+            <td>Day 2</td>
+            <td>16:00 - 18:00</td>
+            <td class="activity-cell">
+              <span class="activity-highlight">Committee Session 4</span>
+              <div class="activity-detail">Resolution voting procedures</div>
+            </td>
+            <td>Assigned Rooms</td>
+          </tr>
+          <tr data-aos="fade-left" data-aos-delay="300">
+            <td>Day 2</td>
+            <td>19:30 - 22:00</td>
+            <td class="activity-cell">
+              <span class="activity-highlight">Diplomatic Dinner</span>
+              <div class="activity-detail">Formal networking event</div>
+            </td>
+            <td>Pearl Continental Hotel</td>
+          </tr>
+          <tr data-aos="fade-right">
+            <td>Day 3</td>
+            <td>10:00 - 12:30</td>
+            <td class="activity-cell">
+              <span class="activity-highlight">Final Committee Sessions</span>
+              <div class="activity-detail">Resolution finalization</div>
+            </td>
+            <td>Assigned Rooms</td>
+          </tr>
+          <tr data-aos="fade-right" data-aos-delay="100">
+            <td>Day 3</td>
+            <td>14:00 - 16:00</td>
+            <td class="activity-cell">
+              <span class="activity-highlight">General Assembly</span>
+              <div class="activity-detail">Presentation of committee resolutions</div>
+            </td>
+            <td>Main Auditorium</td>
+          </tr>
+          <tr data-aos="fade-right" data-aos-delay="200">
+            <td>Day 3</td>
+            <td>16:00 - 18:00</td>
+            <td class="activity-cell">
+              <span class="activity-highlight">Closing Ceremony & Awards</span>
+              <div class="activity-detail">Recognition of outstanding delegates</div>
+            </td>
+            <td>Main Auditorium</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="container">
+  <div class="cta-section">
+    <h2 class="cta-title" data-aos="fade-up">Ready to Join the Diplomacy?</h2>
+    <p class="cta-subtitle" data-aos="fade-up" data-aos-delay="100">
+      Secure your spot at the premier Model United Nations conference in Pakistan. Limited seats available for delegates and volunteers.
+    </p>
+    <div class="d-flex justify-content-center gap-3">
+      <a href="volunteer and delegate.html" class="btn btn-cta" data-aos="fade-up" data-aos-delay="200">
+        <i class="fas fa-hands-helping me-2"></i>Apply as Volunteer
+      </a>
+      <a href="volunteer and delegate.html" class="btn btn-cta" data-aos="fade-up" data-aos-delay="300">
+        <i class="fas fa-user-tie me-2"></i>Register as Delegate
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container footer-content">
+    <div class="row">
+      <div class="col-lg-4 mb-4 mb-lg-0">
+        <h5 class="footer-title">Quaid Model United Nations</h5>
+        <p class="small">
+          Empowering youth through diplomacy, leadership, and collaboration. 
+          Fostering critical thinking, public speaking, and meaningful dialogue for a better tomorrow.
+        </p>
+        <p class="small mb-0 mt-3">
+          <i class="fas fa-map-marker-alt me-2"></i>Karachi Expo Center, Karachi, Pakistan
+        </p>
+      </div>
+      
+      <div class="col-lg-4 mb-4 mb-lg-0">
+        <h5 class="footer-title">Quick Links</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="index.html" class="text-white text-decoration-none">Home</a></li>
+          <li class="mb-2"><a href="event.html" class="text-white text-decoration-none">Event & Schedule</a></li>
+          <li class="mb-2"><a href="volunteer and delegate.html" class="text-white text-decoration-none">Volunteer</a></li>
+          <li class="mb-2"><a href="volunteer and delegate.html" class="text-white text-decoration-none">Delegate</a></li>
+          <li class="mb-2"><a href="our-team.html" class="text-white text-decoration-none">Our Team</a></li>
+        </ul>
+      </div>
+      
+      <div class="col-lg-4">
+        <h5 class="footer-title">Connect With Us</h5>
+        <p class="small mb-1">
+          <i class="fab fa-instagram me-2"></i>
+          <a href="https://www.instagram.com/quaidmunofficial" class="text-white text-decoration-none">@quaidmunofficial</a>
+        </p>
+        <p class="small mb-1">
+          <i class="fab fa-facebook me-2"></i>
+          <a href="#" class="text-white text-decoration-none">QMUN Pakistan</a>
+        </p>
+        <p class="small mb-1">
+          <i class="fas fa-envelope me-2"></i>
+          <a href="mailto:info@quaidmun.org" class="text-white text-decoration-none">info@quaidmun.org</a>
+        </p>
+        <p class="small mb-3">
+          <i class="fas fa-phone me-2"></i>
+          <a href="tel:+92000000000" class="text-white text-decoration-none">+92 000 0000000</a>
+        </p>
+        
+        <div class="social-icons">
+          <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      <p class="mb-0">&copy; 2025 Quaid Model United Nations. All rights reserved.</p>
+      <p class="mb-0 mt-2">Designed with <i class="fas fa-heart text-danger"></i> for future diplomats</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to Top Button -->
+<div class="back-to-top">
+  <i class="fas fa-chevron-up"></i>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  // Initialize AOS
+  AOS.init({
+    duration: 800,
+    once: true,
+    easing: 'ease-out-back'
+  });
+  
+  // Countdown Timer
+  const countdown = document.getElementById("countdown");
+  const eventDate = new Date("2025-08-01T09:00:00").getTime();
+  
+  const updateCountdown = () => {
+    const now = new Date().getTime();
+    const diff = eventDate - now;
+    
+    if (diff <= 0) {
+      countdown.innerHTML = "Event in Progress!";
+      return;
+    }
+    
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const s = Math.floor((diff % (1000 * 60)) / 1000);
+    
+    countdown.innerHTML = `${d}d ${h}h ${m}m ${s}s`;
+  };
+  
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+  
+  // Back to top button
+  const backToTopBtn = document.querySelector('.back-to-top');
+  
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      backToTopBtn.classList.add('show');
+    } else {
+      backToTopBtn.classList.remove('show');
+    }
+  });
+  
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+  
+  // Smooth scrolling for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        window.scrollTo({
+          top: target.offsetTop - 80,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+</script>
+</body>
+</html>
