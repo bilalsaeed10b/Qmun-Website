@@ -411,33 +411,28 @@
       border-top: 1px solid rgba(255, 255, 255, 0.1);
       text-align: center;
     }
+    .whatsapp-float {
+          position: fixed;
+          width: 50px;
+          height: 50px;
+          bottom: 20px;
+          right: 20px;
+          background-color: #25d366;
+          border-radius: 50%;
+          text-align: center;
+          box-shadow: 2px 2px 3px #363636;
+          z-index: 100;
+      }
+
+      .whatsapp-float img {
+          margin-top: 8px;
+          width: 35px;
+          height: 35px;
+      }
     
-    .back-to-top {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent-blue), var(--primary-blue));
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-      z-index: 1000;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
     
-    .back-to-top.show {
-      opacity: 1;
-      visibility: visible;
-    }
     
+
     /* Responsive adjustments */
     @media (max-width: 991px) {
       .hero-title {
@@ -477,6 +472,8 @@
       .schedule-table td {
         padding: 15px 10px;
       }
+      
+
     }
   </style>
 </head>
@@ -750,6 +747,11 @@
   </div>
 </section>
 
+<!-- floating whatsapp button -->
+<a href="https://api.whatsapp.com/send?phone=971581357242" class="whatsapp-float" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png" alt="WhatsApp" width="60" height="60">
+</a>
+
 <!-- Footer -->
 <footer class="footer">
   <div class="container footer-content">
@@ -784,23 +786,30 @@
         </p>
         <p class="small mb-1">
           <i class="fab fa-facebook me-2"></i>
-          <a href="#" class="text-white text-decoration-none">QMUN Pakistan</a>
+          <a href="https://www.facebook.com/profile.php?id=61577582563558" class="text-white text-decoration-none">QMUN Pakistan Facebook</a>
+        </p>
+        <p class="small mb-1">
+          <i class="fab fa-pinterest me-2"></i>
+          <a href="https://www.pinterest.com/qmunofficial/_profile/" class="text-white text-decoration-none">qmunofficial</a>
+        </p>
+        <p class="small mb-1">
+          <i class="fab fa-linkedin me-2"></i>
+          <a href="linkedin.com/in/quaid-munofficial-7b6116372" class="text-white text-decoration-none">QMUN Linkedin</a>
         </p>
         <p class="small mb-1">
           <i class="fas fa-envelope me-2"></i>
-          <a href="mailto:info@quaidmun.org" class="text-white text-decoration-none">info@quaidmun.org</a>
+          <a href="" class="text-white text-decoration-none">contact@qmun.net</a>
         </p>
         <p class="small mb-3">
           <i class="fas fa-phone me-2"></i>
-          <a href="tel:+92000000000" class="text-white text-decoration-none">+92 000 0000000</a>
+          <a href="tel:+92000000000" class="text-white text-decoration-none">+92 327 2157113</a>
         </p>
         
         <div class="social-icons">
-          <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-          <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.instagram.com/quaidmunofficial" class="social-icon"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=61577582563558" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+          <a href="linkedin.com/in/quaid-munofficial-7b6116372" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.pinterest.com/qmunofficial/_profile/" class="social-icon"><i class="fab fa-pinterest"></i></a>
         </div>
       </div>
     </div>
@@ -812,10 +821,7 @@
   </div>
 </footer>
 
-<!-- Back to Top Button -->
-<div class="back-to-top">
-  <i class="fas fa-chevron-up"></i>
-</div>
+
 
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -852,23 +858,7 @@
   updateCountdown();
   setInterval(updateCountdown, 1000);
   
-  // Back to top button
-  const backToTopBtn = document.querySelector('.back-to-top');
-  
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-      backToTopBtn.classList.add('show');
-    } else {
-      backToTopBtn.classList.remove('show');
-    }
-  });
-  
-  backToTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  });
+
   
   // Smooth scrolling for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
